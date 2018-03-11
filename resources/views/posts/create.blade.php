@@ -29,8 +29,7 @@
                                 <label for="body" class="col-md-4 col-form-label text-md-right">{{ __('Body') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="body" type="body" class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" name="body" required>
-                                    </textarea>
+                                    <textarea id="body" type="body" class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" name="body" required>{{ old('body') }}</textarea>
 
                                     @if ($errors->has('body'))
                                         <span class="invalid-feedback">
