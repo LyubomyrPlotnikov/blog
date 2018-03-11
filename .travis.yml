@@ -17,6 +17,6 @@ script:
   - docker-compose exec -T php-fpm php artisan key:generate
   - docker-compose exec -T php-fpm php artisan migrate --seed
   - docker-compose exec -T php-fpm vendor/bin/phpcs --extensions=php --standard=PSR2 app tests
-  - docker-compose exec -T php-fpm vendor/bin/phpmd app tests text codesize,unusedcode,naming
+  - docker-compose exec -T php-fpm vendor/bin/phpmd app text codesize,unusedcode,naming
   - docker-compose exec -T php-fpm vendor/bin/phpcpd app
   - docker-compose exec -T php-fpm vendor/bin/phpunit --no-coverage

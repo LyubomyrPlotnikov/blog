@@ -4,8 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <a href="{{route('home')}}" class="nav-link"><- Back to list </a>
+            </div>
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit') }}</div>
+                    <div class="card-header">{{ __('Edit') }} "{{ $post->title }}"</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
                             @csrf
