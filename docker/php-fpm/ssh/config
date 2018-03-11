@@ -1,0 +1,17 @@
+Host vm-da-02.ipa.dev.sigmaukraine.com
+HostName da-git.sigmaukraine.com
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+User yuriy.belekanych
+HostName vm-da-02.ipa.dev.sigmaukraine.com
+port 7997
+IdentityFile ~/.ssh/id_rsa
+
+
+Host 10.40.236.198
+HostName 10.40.236.198
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+User yuriy.belekanych
+Port 7997
+IdentityFile ~/.ssh/id_rsa
