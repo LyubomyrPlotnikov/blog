@@ -14,7 +14,7 @@ class PostTest extends TestCase
      */
     public function testCreatePost()
     {
-       $this->actingAs($this->getAdminUser())
+        $this->actingAs($this->getAdminUser())
            ->visit(route('home'))
            ->see(__('Create Post'))
            ->click(__('Create Post'))
@@ -50,6 +50,4 @@ class PostTest extends TestCase
             ->press(__('Create'))
             ->seeText(__('validation.required', ['attribute' => 'body']));
     }
-
-
 }

@@ -16,6 +16,9 @@ before_script:
   - composer require --no-update "laravel/laravel:${LARAVEL_VERSION}"
 
 script:
+  - cp .env.example .env
+  - php artisan key:generate
+  - php artisan migrate --seed
   - vendor/bin/phpcs --extensions=php --standard=PSR2 app tests
   - vendor/bin/phpmd app tests text codesize,unusedcode,naming
   - vendor/bin/phpcpd app

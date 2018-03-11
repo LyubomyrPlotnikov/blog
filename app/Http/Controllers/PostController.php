@@ -44,9 +44,9 @@ class PostController extends Controller
     {
         try {
             $post = auth()->user()->posts()->create($request->only(['title', 'body']));
-        }catch (\Exception $exception) {
-           \Log::error($exception);
-           return redirect()
+        } catch (\Exception $exception) {
+            \Log::error($exception);
+            return redirect()
                ->back()
                ->withErrors(['Your post has not been created. Please contact support.']);
         }
