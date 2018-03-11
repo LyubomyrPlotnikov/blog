@@ -16,7 +16,7 @@ class ForgotPasswordTest extends TestCase
     public function testForgotPasswordForm()
     {
         $this->visit(route('login'))
-            ->click( __('Forgot Your Password?'))
+            ->click(__('Forgot Your Password?'))
             ->type(config('admin.email'), 'email')
             ->press(__('Send Password Reset Link'))
             ->seeText(__('We have e-mailed your password reset link!'));

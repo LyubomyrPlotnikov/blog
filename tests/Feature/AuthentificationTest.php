@@ -24,7 +24,6 @@ class AuthentificationTest extends TestCase
 
         $this->visit(route('posts.create'))
             ->see('You are not authorized to perform this action.');
-
     }
 
     /**

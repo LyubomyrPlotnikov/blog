@@ -91,5 +91,4 @@ class PostTest extends TestCase
             ->click(__('Delete'))
             ->see(__('Your post has been successfully removed!'));
     }
-
 }
