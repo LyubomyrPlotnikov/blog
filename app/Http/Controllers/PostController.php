@@ -42,31 +42,22 @@ class PostController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        try {
-            $post = auth()->user()->posts()->create($request->only(['title', 'body']));
-        } catch (\Exception $exception) {
-            \Log::error($exception);
-            return redirect()
-               ->back()
-               ->withErrors(['Your post has not been created. Please contact support.']);
-        }
+        $post = auth()->user()->posts()->create($request->only(['title', 'body']));
 
         return redirect()
-            ->route('posts.edit', $post)
+            ->route('posts.edit', ['post' => $post->slug])
             ->with('success', 'Your post has been successfully created!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param $post Post
      *
      * @return View
      */
-    public function show(string $id): View
+    public function show(Post $post): View
     {
-        $post = Post::findOrFail($id);
-
         return view('posts.show', [
             'post' => $post
         ]);
@@ -75,13 +66,11 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  $id
+     * @param $post Post
      * @return View
      */
-    public function edit(string $id): View
+    public function edit(Post $post): View
     {
-        $post = Post::findOrFail($id);
-
         return view('posts.edit', [
             'post' => $post
         ]);
@@ -91,29 +80,31 @@ class PostController extends Controller
      * Update post.
      *
      * @param Request $request
-     * @param $id
+     * @param $post Post
      *
+     * @throws \Exception
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, Post $post): RedirectResponse
     {
-        $post = Post::findOrFail($id);
         $post->fill($request->only(['title', 'body']))
             ->save();
 
-        return redirect()->back()->with('success', 'Your post was successfully saved!');
+        return redirect()
+            ->route('posts.edit', ['post' => $post->slug])
+            ->with('success', 'Your post was successfully saved!');
     }
 
     /**
-     * @param $id
+     * @param $post Post
      *
+     * @throws \Exception
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(string $id): RedirectResponse
+    public function destroy(Post $post): RedirectResponse
     {
-        $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect()->route('index')->with('success', 'Your post was successfully removed!');
+        return redirect()->route('home')->with('success', 'Your post has been successfully removed!');
     }
 }

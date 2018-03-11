@@ -3,17 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
+            @include('shared/breadcrumbs')
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ $post->title }}</div>
-
-                    <div class="card-body">
-                        {{ $post->body }}
-                    </div>
-                    <div class="card-footer text-muted">
-                        {{ optional($post->user)->name }} {{ $post->created_at }}
-                    </div>
-                </div>
+                @include('posts.shared.card', ['post' => $post])
             </div>
         </div>
     </div>

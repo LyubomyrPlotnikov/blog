@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('posts', 'PostController');
+    Route::get('posts/{post}/destroy', 'PostController@destroy')->name('posts.destroy');
 });
 
 Route::resource('posts', 'PostController', ['only' => 'show']);

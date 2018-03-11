@@ -3,14 +3,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <a href="{{route('home')}}" class="nav-link"><- Back to list </a>
-            </div>
+            @include('shared/breadcrumbs')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Edit') }} "{{ $post->title }}"</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
+                        <form method="POST" action="{{ route('posts.update', ['id' => $post->slug]) }}">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">

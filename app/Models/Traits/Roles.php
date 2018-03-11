@@ -35,16 +35,6 @@ trait Roles
     }
 
     /**
-     * Return the user's posts
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class, 'user_id');
-    }
-
-    /**
      * Return the user's roles
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

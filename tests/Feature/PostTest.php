@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use MongoDB\Driver\Exception\AuthenticationException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,7 +40,7 @@ class PostTest extends TestCase
     /**
      * Perform post creation with empty field.
      */
-    public function testCreatePostFailure()
+    public function testCreatePostValidatonFailure()
     {
         $this->actingAs($this->getAdminUser())
             ->visit(route('home'))
@@ -50,4 +51,45 @@ class PostTest extends TestCase
             ->press(__('Create'))
             ->seeText(__('validation.required', ['attribute' => 'body']));
     }
+
+    /**
+     * Perform post show.
+     */
+    public function testPostShow()
+    {
+        $this->actingAs($this->getAdminUser())
+            ->visit(route('home'))
+            ->see(__('New blog entry'))
+            ->click(__('Read More'))
+            ->seeText('Back to list');
+    }
+
+    /**
+     * Perform post show.
+     */
+    public function testPostEdit()
+    {
+        $this->actingAs($this->getAdminUser())
+            ->visit(route('home'))
+            ->see(__('New blog entry'))
+            ->click(__('Edit'))
+            ->see(__('Title'))
+            ->see(__('Body'))
+            ->type('New blog entry Edit', 'title')
+            ->press(__('Save'))
+            ->see(__('Your post was successfully saved!'));
+    }
+
+    /**
+     * Perform post show.
+     */
+    public function testPostDelete()
+    {
+        $this->actingAs($this->getAdminUser())
+            ->visit(route('home'))
+            ->see(__('New blog entry Edit'))
+            ->click(__('Delete'))
+            ->see(__('Your post has been successfully removed!'));
+    }
+
 }

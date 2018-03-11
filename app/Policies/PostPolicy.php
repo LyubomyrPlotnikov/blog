@@ -29,7 +29,7 @@ class PostPolicy
      *
      * @return bool
      */
-    public function update(User $user): bool
+    public function edit(User $user): bool
     {
         return $user->isAdmin();
     }

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
+use App\Observers\PostObserver;
 use Illuminate\Support\ServiceProvider;
 
-class BladeProvider extends ServiceProvider
+class ObserverServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -13,7 +15,7 @@ class BladeProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Post::observe(PostObserver::class);
     }
 
     /**
