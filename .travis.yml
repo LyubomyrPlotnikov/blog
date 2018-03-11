@@ -13,8 +13,8 @@ before_script:
 
 script:
   - docker-compose exec -T php-fpm cp .env.example .env
-  - docker-compose exec -T php-fpm php artisan key:generate
   - docker-compose exec -T php-fpm composer install
+  - docker-compose exec -T php-fpm php artisan key:generate
   - docker-compose exec -T php-fpm php artisan migrate --seed
   - docker-compose exec -T php-fpm vendor/bin/phpcs --extensions=php --standard=PSR2 app tests
   - docker-compose exec -T php-fpm vendor/bin/phpmd app tests text codesize,unusedcode,naming
