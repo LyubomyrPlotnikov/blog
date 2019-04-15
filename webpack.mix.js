@@ -11,5 +11,32 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+const vendors = [
+  'lodash',
+  'axios',
+  'vue',
+  'bootstrap',
+  'jquery',
+  'moment',
+  'popper.js',
+  'vue-loading-overlay'
+
+];
+
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+  mix.version();
+}
+
+mix.webpackConfig({
+  devServer: {
+    overlay: true,
+  },
+  resolve: {
+    alias: {
+      Static: path.resolve(__dirname, 'resources/static'),
+    },
+  },
+});
