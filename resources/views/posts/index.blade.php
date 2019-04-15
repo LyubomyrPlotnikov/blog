@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                @each('posts.shared.card', $posts, 'post')
-            </div>
-        </div>
+        <post-page></post-page>
     </div>
 @endsection
