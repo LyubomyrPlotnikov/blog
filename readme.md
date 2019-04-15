@@ -7,14 +7,14 @@
 </p>
 
 ## Installation
-To run the project you will need to install Docker. To do this please follow instruction on official docker site.
+To run the project you will need to install Docker. Please follow instruction on official docker site.
 [Get started with Docker](https://docs.docker.com/get-started/).
 
-After docker is installed you run the project with the following command:
+After docker is installed you can run the project with the following command:
 
 `docker-compose up -d`
 
-The command above will build containers for you. After that, you will need to perform few additional steps
+The command above will build containers for you. After that, you will need to perform a few additional steps
 to access your application. 
 
 * Create `.env` file from `.env.example` in root folder.
@@ -33,7 +33,16 @@ Generate app key:
 
 Run migration:
 
-`ocker-compose exec -T php-fpm php artisan migrate --seed`
+`docker-compose exec -T php-fpm php artisan migrate --seed`
+
+Run yarn:
+
+`docker-compose exec -T yarn yarn`
+
+Run build:
+
+`docker-compose exec -T yarn run dev`
+
 
 At this point, your application should be accessible via `blog.local` domain.
 
